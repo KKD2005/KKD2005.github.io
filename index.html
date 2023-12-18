@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PawConnect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@graffiti-garden/actor-client/client.css">
+  <link rel="stylesheet" href="./style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "vue":
+         "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.js",
+        "@graffiti-garden/plugin-vue":
+         "https://cdn.jsdelivr.net/npm/@graffiti-garden/plugin-vue@1.1.0"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <button v-if="$gf.me" class="create-post-button" onclick="window.location.href='createpost.html'">
+      + Create Post
+      
+    </button>
+    <p>
+      <div v-if="$gf.me" class="dropdown">
+        <button class="dropbtn">
+          <profile :gfme="$gf.me" :editable="false" :profilepage="false"></profile> 
+          <img src="media/60995.png" class="dropdownarrow">
+
+        </button>
+        <div class="dropdown-content">
+          <a href="editprofile.html">Edit Profile</a>
+          <a href="#" @click="$gf.logOut">Log Out</a>
+        </div>
+      </div>
+      <!-- <button v-if="$gf.me" @click="$gf.logOut" class="loginstatus">
+        Log Out
+      </button> -->
+      <button v-else @click="$gf.logIn" class="loginstatus">
+        Select Actor
+      </button>
+    </p>
+    <h1>PawConnect</h1>
+    
+
+    <!-- <input type="checkbox" id="contextanimal1" v-model="contextanimal1Checked[0]">
+    <label for="contextanimal1"> Dog</label><br>
+    <input type="checkbox" id="contextanimal2" v-model="contextanimal2Checked">
+    <label for="contextanimal2"> Cat</label><br>
+    <input type="checkbox" id="contextanimal3" v-model="contextanimal3Checked">
+    <label for="contextanimal3"> Bird</label><br>
+
+    <section class="contextselection" v-for="i in 3">
+      <input type="checkbox" :id="'contextanimal'+i" v-model="contextanimal1Checked[i-1]">
+      <label :for="'contextanimal'+i"> {{orderofanimals[i-1]}}</label><br>
+  
+    </section> -->
+
+    
+    <feed></feed>
+    
+    <p>
+      Your Actor ID is: {{ $gf.me }}
+    </p>
+
+    
+
+
+
+    
+    
+  </div>
+
+ 
+  <script type="module">
+    import { inject, createApp, toRef } from 'vue'
+    import Profile from './profile.js'
+    import Likes from './likes.js'
+    import Feed from './feed.js'
+    import GraffitiVue from '@graffiti-garden/plugin-vue'
+    createApp({
+      data() {
+        return {
+          message: '',
+          contextanimal1Checked: [false, false, false],
+          orderofanimals: ['Dog', 'Cat', 'Birds'],
+          file: null,
+          checkedContextsToPost:[],
+          checkedContextsToView:[],
+        }
+        
+      },
+      components: {
+        Profile,
+        Likes,
+        Feed
+        
+      },
+      methods: {
+        previewFiles(event) {
+          console.log(event.target.files);
+          this.file = event.target.files[0]
+          console.log(this.file)
+        },
+        async createPost (){
+          let dataURL = null
+          if (this.file){
+            const reader = new FileReader()
+            reader.readAsDataURL(this.file)
+            dataURL = await new Promise(resolve =>{
+              reader.onload = e=> resolve(e.target.result)
+            })
+          }
+          // const source = {
+          //   type: 'FileReference',
+          //   mime: file.type,
+          //   hash: await sha256Hex(dataURL)
+          // }
+          // const target = {
+          //   type: 'File',
+          //   dataURL
+          // }
+          
+          let uuid = crypto.randomUUID()
+          // for (let i=0; i<3; i++){
+          //   if (document.getElementById('animal'+i.toString()).checked) {
+          //     this.$gf.postLink(this.orderofanimals[i], uuid);
+          //   } 
+          // }
+          for (let i=0; i<this.checkedContextsToPost.length; i++){
+            console.log(this.checkedContextsToPost)
+            console.log(i)
+            console.log (this.checkedContextsToPost[i].substring(0, this.checkedContextsToPost[i].length-4))
+            this.$gf.postLink(this.checkedContextsToPost[i].substring(0, this.checkedContextsToPost[i].length-4), uuid)
+          }
+          // if (document.getElementById('animal1').checked) {
+          //   this.$gf.postLink(this.context, uuid);
+          // } 
+          // if (document.getElementById('animal2').checked) {
+          //   this.$gf.postLink(this.context, uuid);
+          // } 
+          // if (document.getElementById('animal3').checked) {
+          //   this.$gf.postLink(this.context, uuid);
+          // } 
+          //this.$gf.postLink(this.context, uuid);
+          this.$gf.postLink(uuid, {
+            type: 'Note', 
+            content: this.message,
+            published: Date.now(),
+            image: dataURL
+          });
+          
+      
+          this.message='';
+          this.checkedContextsToPost=[];          
+
+        },
+        like(uuid){
+          this.$gf.postLink(uuid, {
+            type: 'Like',
+            object: uuid
+          })
+        },
+       
+        
+      }
+    })
+      .use(GraffitiVue)
+      .mount('#app')
+  </script>
+</body>
+</html>

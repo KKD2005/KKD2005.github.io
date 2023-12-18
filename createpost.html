@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PawConnect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@graffiti-garden/actor-client/client.css">
+  <link rel="stylesheet" href="./style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "vue":
+         "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.js",
+        "@graffiti-garden/plugin-vue":
+         "https://cdn.jsdelivr.net/npm/@graffiti-garden/plugin-vue@1.1.0"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <a href="index.html" class="goback-button">&larr; Go Back to Main Page</a>
+    
+    <p id="createposttitle">Create a Post</p>
+    <form v-if="$gf.me" @submit.prevent="createPost" >
+      <div id="createpostbody">
+        <p class="steptitle">STEP ONE:</p>
+        <p class="stepdescription">Choose a photo or video from your camera roll</p>
+        <input type="file" @change="previewFiles">
+        <p class="steptitle">STEP TWO:</p>
+        <p class="stepdescription">Select any tags you'd like to add:</p>
+        <input type="checkbox" id="dogPost" value="DogPost" v-model="checkedContextsToPost">
+        <label for="dogPost"> Dog</label><br>
+        <input type="checkbox" id="catPost" value="CatPost" v-model="checkedContextsToPost">
+        <label for="catPost"> Cat</label><br>
+        <input type="checkbox" id="birdPost" value="BirdPost" v-model="checkedContextsToPost">
+        <label for="birdPost"> Bird</label><br>
+        <p class="steptitle">STEP THREE:</p>
+        <textarea v-model="message" placeholder="Write your caption here..."></textarea>
+        <!-- <p style="white-space: pre-line;">{{message}}</p> -->
+        <!-- <input v-model="message" placeholder="Caption"><br> -->
+        <div> Checked Contexts to Tag Post: {{checkedContextsToPost}}</div>
+        <p class="steptitle">STEP FOUR:</p>
+        <input type="submit" value="Upload Post!">
+      </div>
+    </form>
+    <div v-else>
+      You need to log in to post yourself.
+    </div>
+    <p>
+      Your Actor ID is: {{ $gf.me }}
+    </p>
+
+    
+
+
+
+    
+    
+  </div>
+
+ 
+  <script type="module">
+    import { inject, createApp, toRef } from 'vue'
+    import Profile from './profile.js'
+    import Likes from './likes.js'
+    import Feed from './feed.js'
+    import GraffitiVue from '@graffiti-garden/plugin-vue'
+    createApp({
+      data() {
+        return {
+          message: '',
+          contextanimal1Checked: [false, false, false],
+          orderofanimals: ['Dog', 'Cat', 'Birds'],
+          file: null,
+          checkedContextsToPost:[],
+        }
+        
+      },
+      components: {
+        Profile,
+        Likes,
+        Feed
+        
+      },
+      methods: {
+        previewFiles(event) {
+          console.log(event.target.files);
+          this.file = event.target.files[0]
+          console.log(this.file)
+        },
+        async createPost (){
+          let dataURL = null
+          if (this.file){
+            const reader = new FileReader()
+            reader.readAsDataURL(this.file)
+            dataURL = await new Promise(resolve =>{
+              reader.onload = e=> resolve(e.target.result)
+            })
+          }
+          // const source = {
+          //   type: 'FileReference',
+          //   mime: file.type,
+          //   hash: await sha256Hex(dataURL)
+          // }
+          // const target = {
+          //   type: 'File',
+          //   dataURL
+          // }
+          
+          let uuid = crypto.randomUUID()
+          // for (let i=0; i<3; i++){
+          //   if (document.getElementById('animal'+i.toString()).checked) {
+          //     this.$gf.postLink(this.orderofanimals[i], uuid);
+          //   } 
+          // }
+          for (let i=0; i<this.checkedContextsToPost.length; i++){
+            console.log(this.checkedContextsToPost)
+            console.log(i)
+            console.log (this.checkedContextsToPost[i].substring(0, this.checkedContextsToPost[i].length-4))
+            this.$gf.postLink(this.checkedContextsToPost[i].substring(0, this.checkedContextsToPost[i].length-4), uuid)
+          }
+          // if (document.getElementById('animal1').checked) {
+          //   this.$gf.postLink(this.context, uuid);
+          // } 
+          // if (document.getElementById('animal2').checked) {
+          //   this.$gf.postLink(this.context, uuid);
+          // } 
+          // if (document.getElementById('animal3').checked) {
+          //   this.$gf.postLink(this.context, uuid);
+          // } 
+          //this.$gf.postLink(this.context, uuid);
+          this.$gf.postLink(uuid, {
+            type: 'Note', 
+            content: this.message,
+            published: Date.now(),
+            image: dataURL
+          });
+          
+      
+          this.message='';
+          this.checkedContextsToPost=[];          
+
+        },
+        
+       
+        
+      }
+    })
+      .use(GraffitiVue)
+      .mount('#app')
+  </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PawConnect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@graffiti-garden/actor-client/client.css">
+  <link rel="stylesheet" href="./style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "vue":
+         "https://cdn.jsdelivr.net/npm/vue/dist/vue.esm-browser.js",
+        "@graffiti-garden/plugin-vue":
+         "https://cdn.jsdelivr.net/npm/@graffiti-garden/plugin-vue@1.1.0"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app">
+    
+    
+    <a href="index.html" class="goback-button">&larr; Go Back to Main Page</a>
+    <profile :gfme="$gf.me" :editable="true" :profilepage="true">
+      
+    </profile>
+    
+
+
+
+    
+  </div>
+
+ 
+  <script type="module">
+    import { inject, createApp, toRef } from 'vue'
+    import Profile from './profile.js'
+    import Likes from './likes.js'
+    import Feed from './feed.js'
+    import GraffitiVue from '@graffiti-garden/plugin-vue'
+    createApp({
+      data() {
+        return {
+          
+        }
+        
+      },
+      components: {
+        Profile,
+        Likes,
+        Feed
+        
+      },
+      methods: {
+       
+       
+        
+      }
+    })
+      .use(GraffitiVue)
+      .mount('#app')
+  </script>
+</body>
+</html>
