@@ -46,8 +46,9 @@ export default {
                             
                             
                             <template v-if="post.actor==$gf.me">
+                                
                                 <button id="deletebutton" @click="$gf.deleteLink(post)">
-                                ␡
+                                🗑️ Delete
                                 </button>
                                 
                             </template>

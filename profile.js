@@ -28,7 +28,7 @@ export default {
         </form>
       </div>
     </div>
-    <div v-else>
+    <div v-else class="ellipseshandle">
       <div class="feedprofilecontainer">
         <div class="feedprofilepicture">
           <img :src="getProfilePicture">
