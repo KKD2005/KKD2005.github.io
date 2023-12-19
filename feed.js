@@ -18,12 +18,12 @@ export default {
     template: `
     <p id="selectfilters">What would you like to see today?</p>
     <div id="viewfilters">
-    <input type="checkbox" id="dog" value = "Dog" v-model="checkedContextsToView">
-    <label for ="dog">Dog</label>
-    <input type="checkbox" id="cat" value = "Cat" v-model="checkedContextsToView">
-    <label for ="cat">Cat</label>
-    <input type="checkbox" id="bird" value = "Bird" v-model="checkedContextsToView">
-    <label for ="bird">Bird</label>
+        <input type="checkbox" id="dog" value = "Dog" v-model="checkedContextsToView">
+        <label for ="dog" id="doglabel">Dog</label>
+        <input type="checkbox" id="cat" value = "Cat" v-model="checkedContextsToView">
+        <label for ="cat" id="catlabel">Cat</label>
+        <input type="checkbox" id="bird" value = "Bird" v-model="checkedContextsToView">
+        <label for ="bird" id="birdlabel">Bird</label>
     </div>
     <div id="postcontainer">
         <template v-for="uuid in filterContext">

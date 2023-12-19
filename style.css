@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,10 +8,10 @@
 }
 h1{
   text-align: center;
-  color: #000;
-  font-family: Bebas Neue;
+  color: black;
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: normal;
   line-height: normal;
   margin-top: 1rem;
 }
@@ -18,7 +21,6 @@ body {
 }
 p#username{
   color: #333; 
-  font-family: Open Sans;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 400;
@@ -28,18 +30,46 @@ p#username{
 
 p#createposttitle, #edittitle{
   text-align: center;
-  color: black; 
+  color: #1F2D3D;
   font-size: 2.5rem; 
   font-family: Bebas Neue; 
   font-weight: 400; 
   word-wrap: break-word;
-  margin-top: 2rem
+  margin-top: 1rem;
+  
 }
 
-.steptitle{
-  color: black; 
+.steptitle1{
+  color: #FFA500; 
   font-size: 1.5rem; 
-  font-family: Quicksand; 
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400; 
+  word-wrap: break-word;
+  margin: 0.1rem;
+  font-weight: bold;
+}
+.steptitle2{
+  color: #3498db; 
+  font-size: 1.5rem; 
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400; 
+  word-wrap: break-word;
+  margin: 0.1rem;
+  font-weight: bold;
+}
+.steptitle3{
+  color: #4CAF50; 
+  font-size: 1.5rem; 
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 400; 
+  word-wrap: break-word;
+  margin: 0.1rem;
+  font-weight: bold;
+}
+.steptitle4{
+  color: #9b59b6; 
+  font-size: 1.5rem; 
+  font-family: 'Quicksand', sans-serif;
   font-weight: 400; 
   word-wrap: break-word;
   margin: 0.1rem
@@ -47,10 +77,11 @@ p#createposttitle, #edittitle{
 .stepdescription{
   color: black; 
   font-size: 1rem; 
-  font-family: Quicksand; 
+  font-family:'Quicksand', sans-serif;
   font-weight: 400; 
   word-wrap: break-word;
-  margin:0.1rem 
+  margin:0.1rem ;
+  font-weight: bold;
 }
 textarea{
   width: 25rem;
@@ -68,11 +99,11 @@ img.center{
 } 
 p#selectfilters{
   text-align: center;
-  color: #000;
-  font-family: Quicksand;
+  color: #333333;
+  font-family: 'Quicksand', sans-serif;
   font-size: 1.5rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: bold;
   line-height: normal
 }
 div#viewfilters{
@@ -103,6 +134,8 @@ p#caption{
   margin-top: 3rem;
   left:0;
   margin-bottom: 0.5rem;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
 }
 .container{
  
@@ -111,7 +144,7 @@ p#caption{
   display: inline-block;
   max-width: 25rem;
   word-break: break-all;
-  height: auto
+  height: auto;
   
 }
 div#createpostbody {
@@ -158,7 +191,6 @@ div#postcontainer{
 .profilecontainer p {
   margin: 0.25rem; 
   color: #333; 
-  font-family: Open Sans;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 400;
@@ -187,7 +219,6 @@ div#postcontainer{
 .feedprofilecontainer span {
   margin: 0.25rem; 
   color: #333; 
-  font-family: Open Sans;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 400;
@@ -254,6 +285,7 @@ form.editprofile {
 label.usernamelabel, label.profilepicturelabel {
   display: block;
   margin-bottom: .5rem;
+  font-family: 'Quicksand', sans-serif;
 }
 
 input[type="text"]#username,
@@ -265,6 +297,7 @@ input[type="submit"].submitedits {
   border: 0.1rem solid #ddd;
   border-radius: 0.25rem;
   box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif; 
 }
 
 input[type="submit"].submitedits {
@@ -274,7 +307,8 @@ input[type="submit"].submitedits {
 #warning{
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-  font-size: 1.5rem
+  font-size: 1.5rem;
+  font-family: 'Quicksand', sans-serif;
 }
 .goback-button {
   display: inline-block;
@@ -289,17 +323,17 @@ input[type="submit"].submitedits {
   left: 1rem;
   display: flex;
   flex-direction: row;
+  align-items: center;
   max-height: 2.5rem;
   overflow: hidden;
   padding: 0.5rem 1rem;
-  border: 0.075rem solid #333;
-  border-radius: 0.25rem;
   cursor: pointer;
-  font-family: Open Sans;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 400;
-  margin: 0.25rem
+  margin: 0.25rem; 
+  font-family: 'Quicksand', sans-serif;
+
 }
 .post-divider {
   border: none;
@@ -310,8 +344,55 @@ input[type="submit"].submitedits {
 
 #numberoflikes{
   margin-left:0.25rem;
-  margin-right:0.25rem
+  margin-right:0.25rem;
+  font-family: 'Quicksand', sans-serif;
 }
-
-
+#viewfilters label {
+  font-family: 'Quicksand', sans-serif;
+}
+p#usernameprofilepage{
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+}
+#usernamenotprofilepage{
+  font-family: 'Quicksand', sans-serif;
+}
+input[type="submit"].submitpost {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-height: 2.5rem;
+  overflow: hidden;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0.25rem; 
+  font-family: 'Quicksand', sans-serif;
+}
+.postpictureupload{
+  font-family: 'Quicksand', sans-serif;
+}
+#doglabel{
+  font-weight: bold;
+  color: #FFA500
+}
+#catlabel{
+  font-weight: bold;
+  color: #3498db; 
+}
+#birdlabel{
+  font-weight: bold;
+  color: #4CAF50;
+}
+.dropdownoption{
+  font-family: 'Quicksand', sans-serif;
+}
+.posttag {
+  font-family: 'Quicksand', sans-serif;
+}
+textarea {
+  font-family: 'Quicksand', sans-serif;
+}
 /* use rem instead of px - rem = 1 line unit, vw and vh, percentage of screen*/

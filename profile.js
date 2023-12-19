@@ -9,7 +9,7 @@ export default {
           <img :src="getProfilePicture">
         </div>
         
-        {{getUsername}}
+        <p id="usernameprofilepage">{{getUsername}}</p>
         
         
         
@@ -20,7 +20,7 @@ export default {
         <form  @submit.prevent="makeProfileEdits" class="editprofile">
           <p id="edittitle">Edit your profile</p>
           <p id="warning">WARNING: Please enter both a username and profile picture before saving edits.</p>
-          <label class="usernamelabel" for="username">Enter a new username:</label>
+          <label class="usernamelabel" for="username">Enter a new username that is at most 20 characters:</label>
           <input type="text" id="username" name="username" v-model = "username" maxlength="20" oninput="enforceMaxLength(this)">
           <label class="profilepicturelabel" for="profilepictureupload">Enter a new profile picture:</label>
           <input type="file" @change="previewProfilePicture" class="profilepictureupload">
@@ -34,7 +34,7 @@ export default {
           <img :src="getProfilePicture">
         </div>
       
-        <span>{{getUsername}}</span>
+        <span id="usernamenotprofilepage">{{getUsername}}</span>
       
       
       

@@ -24,24 +24,24 @@
     <p id="createposttitle">Create a Post</p>
     <form v-if="$gf.me" @submit.prevent="createPost" >
       <div id="createpostbody">
-        <p class="steptitle">STEP ONE:</p>
+        <p class="steptitle1">STEP ONE:</p>
         <p class="stepdescription">Choose a photo or video from your camera roll</p>
-        <input type="file" @change="previewFiles">
-        <p class="steptitle">STEP TWO:</p>
+        <input type="file" @change="previewFiles" class="postpictureupload">
+        <p class="steptitle2">STEP TWO:</p>
         <p class="stepdescription">Select any tags you'd like to add:</p>
         <input type="checkbox" id="dogPost" value="DogPost" v-model="checkedContextsToPost">
-        <label for="dogPost"> Dog</label><br>
+        <label for="dogPost" class="posttag"> Dog</label><br>
         <input type="checkbox" id="catPost" value="CatPost" v-model="checkedContextsToPost">
-        <label for="catPost"> Cat</label><br>
+        <label for="catPost" class="posttag"> Cat</label><br>
         <input type="checkbox" id="birdPost" value="BirdPost" v-model="checkedContextsToPost">
-        <label for="birdPost"> Bird</label><br>
-        <p class="steptitle">STEP THREE:</p>
+        <label for="birdPost" class="posttag"> Bird</label><br>
+        <p class="steptitle3">STEP THREE:</p>
         <textarea v-model="message" placeholder="Write your caption here..."></textarea>
         <!-- <p style="white-space: pre-line;">{{message}}</p> -->
         <!-- <input v-model="message" placeholder="Caption"><br> -->
         <div> Checked Contexts to Tag Post: {{checkedContextsToPost}}</div>
-        <p class="steptitle">STEP FOUR:</p>
-        <input type="submit" value="Upload Post!">
+        <p class="steptitle4">STEP FOUR:</p>
+        <input type="submit" value="Upload Post!" class="submitpost">
       </div>
     </form>
     <div v-else>
