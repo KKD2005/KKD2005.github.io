@@ -164,6 +164,18 @@ div#postcontainer{
   position: absolute;
   top: 1rem;
   right: 1rem; 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-height: 2.5rem;
+  overflow: hidden;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0.25rem;
+  font-family: 'Quicksand', sans-serif;
 }
 .profilecontainer {
   display: flex;
@@ -401,6 +413,12 @@ input[type="submit"].submitpost {
 textarea {
   font-family: 'Quicksand', sans-serif;
   border: 0.0625rem solid #333333;
+}
+.notloggedinpost{
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-family: 'Quicksand', sans-serif;
 }
 
 /* use rem instead of px - rem = 1 line unit, vw and vh, percentage of screen*/
