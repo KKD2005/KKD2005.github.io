@@ -30,7 +30,7 @@ export default {
             <graffiti-links v-slot="{ links }" :source = "uuid">
                 <template v-for="post in links">
                     
-                    <template v-if="post.target.type!='Like'">
+                    <template v-if="post.target.type!='Like' && !('inReplyTo' in post.target)">
                         
                         
                         <li class="container">

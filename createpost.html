@@ -39,7 +39,6 @@
         <textarea v-model="message" placeholder="Write your caption here..."></textarea>
         <!-- <p style="white-space: pre-line;">{{message}}</p> -->
         <!-- <input v-model="message" placeholder="Caption"><br> -->
-        <div> Checked Contexts to Tag Post: {{checkedContextsToPost}}</div>
         <p class="steptitle4">STEP FOUR:</p>
         <input type="submit" value="Upload Post!" class="submitpost">
       </div>
@@ -118,7 +117,7 @@
             console.log(this.checkedContextsToPost)
             console.log(i)
             console.log (this.checkedContextsToPost[i].substring(0, this.checkedContextsToPost[i].length-4))
-            this.$gf.postLink(this.checkedContextsToPost[i].substring(0, this.checkedContextsToPost[i].length-4), uuid)
+            await this.$gf.postLink(this.checkedContextsToPost[i].substring(0, this.checkedContextsToPost[i].length-4), uuid)
           }
           // if (document.getElementById('animal1').checked) {
           //   this.$gf.postLink(this.context, uuid);
@@ -130,7 +129,7 @@
           //   this.$gf.postLink(this.context, uuid);
           // } 
           //this.$gf.postLink(this.context, uuid);
-          this.$gf.postLink(uuid, {
+          await this.$gf.postLink(uuid, {
             type: 'Note', 
             content: this.message,
             published: Date.now(),
@@ -140,7 +139,7 @@
       
           this.message='';
           this.checkedContextsToPost=[]; 
-          // window.location.href = 'https://kkd2005.github.io/index.html';
+          window.location.href = '/index.html';
         },
         
        
